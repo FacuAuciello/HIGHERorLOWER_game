@@ -50,7 +50,6 @@ diccionario_juego = {
     "League of Legends": 17,
     "GoPro": 17,
     "Serena Williams": 16,
-    "Xbox": 15,
     "Fortnite": 14,
     "Max Verstappen": 13,
     "Ibai": 12,
@@ -63,7 +62,7 @@ diccionario_juego = {
     "Pepsi": 2,
     "Maluma": 58
 }
-
+#Funciones
 def dos_elementos_random():
     elementos_random = random.sample(list(diccionario_juego.keys()), 2) #dame una lista de 2 elementos random
     return elementos_random
@@ -76,16 +75,28 @@ def seleccion_de_opcion(elementos_random):
     
     seguidores_opcion_A = diccionario_juego[opcionA]
     seguidores_opcion_B = diccionario_juego[opcionB]
+    
     if eligiendo_opcion.upper() == "A" and seguidores_opcion_A > seguidores_opcion_B:
         print(f"BIEN PA! {opcionA} tiene {diccionario_juego[opcionA]}M, {opcionB} tiene {diccionario_juego[opcionB]}M")
+        return "gano"
     elif eligiendo_opcion.upper() == "B" and seguidores_opcion_B > seguidores_opcion_A:
         print(f"BIEN PA! {opcionB} tiene {diccionario_juego[opcionB]}M, {opcionA} tiene {diccionario_juego[opcionA]}M")
+        return "gano"
     elif eligiendo_opcion.upper() in ["A", "B"] and seguidores_opcion_A == seguidores_opcion_B: #Se puede crear la lista literal/coleccion inmediata cuando defino el if/elif/elfse #es lo mismo que hacer esto eligiendo_opcion.upper() == "A" or eligiendo_opcion.upper() == "B"
         print(f"BIEN SAFASTE! {opcionA}:{diccionario_juego[opcionA]}M y {opcionB}:{diccionario_juego[opcionB]}M tienen los mismos seguidores")
+        return "gano"
     else:
         print(f"Te equivocaste {opcionA} tiene {diccionario_juego[opcionA]}M seguidores y {opcionB} tiene {diccionario_juego[opcionB]}M seguidores")
+        return "perdio"
+    
+#Logica
+sigue_jugando = True
 
+while sigue_jugando:
+    elementos_random = dos_elementos_random()
+    resultado = seleccion_de_opcion(elementos_random)
+    
+    if resultado == "perdio":
+        sigue_jugando = False
 
-seleccion_de_opcion(dos_elementos_random())
-
-
+print("Fin del juego. Gracias por jugar.")
